@@ -33,4 +33,5 @@ dependencies {
     implementation files('libs/BASE64.jar')
 
     implementation 'com.squareup.okhttp3:okhttp:3.10.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.4.0'
 }

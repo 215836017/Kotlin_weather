@@ -7,7 +7,7 @@ import android.os.Message
 import android.util.Log
 import com.fzq.kotlin_weather.R
 import com.fzq.kotlin_weather.network.getWeatherForecast
-import com.fzq.kotlin_weather.network.testGet
+import com.fzq.kotlin_weather.network.*
 import kotlinx.android.synthetic.main.activity_main.*
 
 /**
@@ -46,7 +46,9 @@ class MainActivity : AppCompatActivity() {
                 val path = "https://free-api.heweather.com/s6/weather/now?location=hangzhou&key=458c682400df47efb841a69154d7677d"
 //                weatherForecast = getWeatherForecast(path)
 
-                testGet(path)
+//                testGet(path)
+
+                testRetrofitGet(path)
 
                 println("请求结束。。。")
                 Log.i("asd", "请求结束。。。")
