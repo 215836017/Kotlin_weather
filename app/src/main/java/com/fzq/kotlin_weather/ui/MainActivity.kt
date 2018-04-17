@@ -7,13 +7,14 @@ import android.os.Message
 import android.util.Log
 import com.fzq.kotlin_weather.R
 import com.fzq.kotlin_weather.network.getWeatherForecast
+import com.fzq.kotlin_weather.network.testGet
 import kotlinx.android.synthetic.main.activity_main.*
 
 /**
  * 一个天气类App，练习Kotlin在Android项目中的使用
- * 使用和风天气提供的API： https://www.heweather.com  -- 免费套餐每天可以访问400次
+ * 使用和风天气提供的API： https://www.heweather.com
  *
- * 注意： 基于和风天气API s6 版本
+ * 注意： 基于和风天气API s6 版本， 有个缺点：都是get方式，没有post
  */
 class MainActivity : AppCompatActivity() {
 
@@ -42,8 +43,11 @@ class MainActivity : AppCompatActivity() {
         object : Thread(){
             override fun run() {
                 super.run()
-                var path = "https://free-api.heweather.com/s6/weather/now?location=hangzhou&key=458c682400df47efb841a69154d7677d"
-                weatherForecast = getWeatherForecast(path)
+                val path = "https://free-api.heweather.com/s6/weather/now?location=hangzhou&key=458c682400df47efb841a69154d7677d"
+//                weatherForecast = getWeatherForecast(path)
+
+                testGet(path)
+
                 println("请求结束。。。")
                 Log.i("asd", "请求结束。。。")
             }
