@@ -20,27 +20,27 @@ class MainActivity : AppCompatActivity() {
 
     var weatherForecast = ""
 
-    var handler: Handler = object : Handler(){
+    var handler: Handler = object : Handler() {
         override fun handleMessage(msg: Message?) {
             super.handleMessage(msg)
-            if (msg?.what == 0x11){
+            if (msg?.what == 0x11) {
                 MainAct_text_test.text = weatherForecast
             }
         }
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        MainAct_btn_test.setOnClickListener{
+        MainAct_btn_test.setOnClickListener {
             println("开始连接服务器。。。")
-            Log.i("asd", "开始连接服务器。。。")
             testHttpJson()
         }
     }
 
-    fun testHttpJson(){
-        object : Thread(){
+    fun testHttpJson() {
+        object : Thread() {
             override fun run() {
                 super.run()
                 val path = "https://free-api.heweather.com/s6/weather/now?location=hangzhou&key=458c682400df47efb841a69154d7677d"
@@ -48,8 +48,8 @@ class MainActivity : AppCompatActivity() {
 
 //                testGet(path)
 
-                testRetrofitGet(path)
-
+                weatherForecast = testRetrofitGet(path)
+                handler.sendEmptyMessage(0x11)
                 println("请求结束。。。")
                 Log.i("asd", "请求结束。。。")
             }
