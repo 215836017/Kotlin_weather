@@ -21,7 +21,7 @@ public class Test {
         map.put("username", "HE1804141148361464");
         map.put("t", time+"");
         try {
-            String signature = getSignature(map, Constants1.heFeng_key);
+            String signature = getSignature(map, Constants.heFeng_key);
 
             System.out.println("signature: " + signature);
         } catch (IOException e) {

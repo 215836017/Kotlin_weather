@@ -1,5 +1,7 @@
 package com.fzq.kotlin_weather.network
 
+import com.fzq.kotlin_weather.json2bean.WeatherNow
+import com.google.gson.Gson
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import retrofit2.Retrofit
@@ -29,7 +31,6 @@ fun testGet(path: String) {
     "update":{"loc":"2018-04-17 21:47","utc":"2018-04-17 13:47"},"status":"ok","now":{"cloud":
     "0","cond_code":"100","cond_txt":"晴","fl":"14","hum":"46","pcpn":"0.0","pres":"1018","
     tmp":"16","vis":"10","wind_deg":"83","wind_dir":"东风","wind_sc":"2","wind_spd":"9"}}]}
-
      */
 
 }
@@ -49,7 +50,12 @@ fun testRetrofitGet(path: String): String {
 
     if (response.isSuccessful) {
         println("response.code = " + response.code())
-        println("response.body() = " + response.body()?.string())
+        val result = response.body()?.string()
+        println("response.body() = $result")
+        val gson = Gson()
+        val json = gson.fromJson(result, WeatherNow::class.java)
+
+        println("打印转换为json后的结果：json.heWeather6[0].now.cond_txt = " + json.HeWeather6)  // 打印ok了，哈哈哈。。。
     }
     return response.body()!!.string()
     /*
