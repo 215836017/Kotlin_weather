@@ -1,18 +1,10 @@
 package com.fzq.kotlin_weather.ui
 
-import android.content.SharedPreferences
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
-import android.os.Message
-import android.text.TextUtils
-import android.util.Log
-import android.widget.Toast
+import android.support.v4.app.Fragment
+import android.support.v7.app.AppCompatActivity
 import com.fzq.kotlin_weather.R
-import com.fzq.kotlin_weather.SP_LAST_LOCATION
-import com.fzq.kotlin_weather.initSharedPreferences
 import com.fzq.kotlin_weather.network.*
-import com.fzq.kotlin_weather.utils.*
 import kotlinx.android.synthetic.main.activity_main.*
 
 /**
@@ -23,18 +15,7 @@ import kotlinx.android.synthetic.main.activity_main.*
  */
 class MainActivity : AppCompatActivity() {
 
-//    val sp: SharedPreferences = initSharedPreferences(this)
-    var location = ""
-    var weatherForecast = ""
-
-    val handler: Handler = object : Handler() {
-        override fun handleMessage(msg: Message?) {
-            super.handleMessage(msg)
-            if (msg?.what == 0x11) {
-                MainAct_text_test.text = weatherForecast
-            }
-        }
-    }
+    var fragments: MutableList<Fragment> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,10 +43,28 @@ class MainActivity : AppCompatActivity() {
 
         // 第三步： 获取当前位置的天气
 
-        MainAct_btn_test.setOnClickListener {
-            println("开始连接服务器。。。")
-            testHttpJson()
-        }
+//        MainAct_btn_test.setOnClickListener {
+//            println("开始连接服务器。。。")
+//            testHttpJson()
+//        }
+
+//        var frag0 = MyFragment()
+//        fragments.add(frag0)
+//        val adapter = MyFragmentAdapter(supportFragmentManager, fragments = fragments)
+//        MainAct_viewPager.adapter = adapter
+
+        //  testHttpJson()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        var frag0 = MyFragment()
+        frag0.location = "hangzhou"
+        frag0.startQuaryWeahter()
+
+        fragments.add(frag0)
+        val adapter = MyFragmentAdapter(supportFragmentManager, fragments)
+        MainAct_viewPager.adapter = adapter
     }
 
 
@@ -78,17 +77,13 @@ class MainActivity : AppCompatActivity() {
 
 //                testGet(path)
 
-                weatherForecast = testRetrofitGet(path)
 
+                getWeatherForecast("hangzhou")
+                getWeatherNow("hangzhou")
+                getWeatherHourly("hangzhou")
 
-                handler.sendEmptyMessage(0x11)
-                println("请求结束。。。")
-                Log.i("asd", "请求结束。。。")
+                //  testRetrofitGet1("hangzhou")
             }
         }.start()
-    }
-
-    private fun showLog(msg: String) {
-        showLog("MainActivity.java", msg)
     }
 }

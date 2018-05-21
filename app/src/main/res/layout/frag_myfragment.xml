@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <View
+        android:id="@+id/myFrag_view_centerVertical_line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#f00"
+        app:layout_constraintBottom_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="parent" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@drawable/bg_three"
+        app:layout_constraintBottom_toBottomOf="@+id/myFrag_view_centerVertical_line"
+        app:layout_constraintBottom_toTopOf="@id/myFrag_view_centerVertical_line"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/myFrag_image_setting"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="5dp"
+        android:src="@drawable/perm_group_system_tools"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/myFrag_image_addCity"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="5dp"
+        android:src="@drawable/ic_menu_sort_by_size"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/myFrag_text_cityName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#00000000"
+        android:clickable="true"
+        android:text="西湖区"
+        android:textColor="#ff0000"
+        android:textSize="26sp"
+        app:layout_constraintLeft_toRightOf="parent"
+        app:layout_constraintRight_toLeftOf="parent" />
+
+    <View
+        android:id="@+id/myFrag_view_Baseline_1"
+        android:layout_width="1dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="8dp"
+        android:background="#00f"
+        app:layout_constraintBottom_toTopOf="@id/myFrag_view_centerVertical_line"
+        app:layout_constraintLeft_toRightOf="parent"
+        app:layout_constraintRight_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/myFrag_text_currentTemperature"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
+        android:text="21°"
+        android:textSize="46sp"
+        app:layout_constraintBottom_toBottomOf="@+id/myFrag_view_Baseline_1"
+        app:layout_constraintEnd_toStartOf="@+id/myFrag_view_Baseline_1"
+        app:layout_constraintTop_toTopOf="@+id/myFrag_view_Baseline_1" />
+
+    <ImageView
+        android:id="@+id/myFrag_iamge_weatherIcon"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="8dp"
+        android:src="@drawable/icon_one_o_o"
+        app:layout_constraintLeft_toRightOf="@id/myFrag_view_Baseline_1"
+        app:layout_constraintTop_toTopOf="@+id/myFrag_view_Baseline_1" />
+
+    <TextView
+        android:id="@+id/myFrag_text_weatherCase"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:text="多云"
+        app:layout_constraintLeft_toRightOf="@id/myFrag_view_Baseline_1"
+        app:layout_constraintTop_toBottomOf="@id/myFrag_iamge_weatherIcon" />
+
+    <TextView
+        android:id="@+id/myFrag_text_temperatureRange"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:text="18°～ 21°"
+        app:layout_constraintLeft_toRightOf="@id/myFrag_view_Baseline_1"
+        app:layout_constraintTop_toBottomOf="@id/myFrag_text_weatherCase" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="8dp"
+        android:text="Forecast"
+        app:layout_constraintBottom_toTopOf="@+id/myFrag_RecyclerView_hourly"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/myFrag_text_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="Toady   Sat"
+        app:layout_constraintBottom_toTopOf="@+id/myFrag_RecyclerView_hourly"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/myFrag_RecyclerView_hourly"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/myFrag_view_centerVertical_line" />
+
+    <View
+        android:id="@+id/myFrag_view_baseLine_2"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="5dp"
+        android:background="#fff"
+        app:layout_constraintTop_toBottomOf="@id/myFrag_RecyclerView_hourly" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/myFrag_RecyclerView_forecast"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:clickable="false"
+        android:nestedScrollingEnabled="false"
+        app:layout_constraintTop_toBottomOf="@+id/myFrag_view_baseLine_2" />
+
+
+</android.support.constraint.ConstraintLayout>

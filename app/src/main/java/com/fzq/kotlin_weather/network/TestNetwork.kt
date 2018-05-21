@@ -1,5 +1,6 @@
 package com.fzq.kotlin_weather.network
 
+import com.fzq.kotlin_weather.*
 import com.fzq.kotlin_weather.json2bean.WeatherNow
 import com.google.gson.Gson
 import okhttp3.OkHttpClient
@@ -36,28 +37,31 @@ fun testGet(path: String) {
 }
 
 
-fun testRetrofitGet(path: String): String {
+fun testRetrofitGet(path: String): String? {
     val retrofit = Retrofit.Builder()
-            .baseUrl("https://free-api.heweather.com/s6/weather/")
+//            .baseUrl("https://free-api.heweather.com/s6/weather/")
+            .baseUrl(baseUrl)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
     val retrofitGet = retrofit.create(RetrofitGet::class.java)
 
-    val call = retrofitGet.getCall()
+    val call = retrofitGet.queryWeatherNow(path, heFeng_key)
 
     val response = call.execute()
 
     if (response.isSuccessful) {
         println("response.code = " + response.code())
         val result = response.body()?.string()
-        println("response.body() = $result")
+        println("testRetrofitGet() -- response.body() = $result")
         val gson = Gson()
         val json = gson.fromJson(result, WeatherNow::class.java)
 
         println("打印转换为json后的结果：json.heWeather6[0].now.cond_txt = " + json.HeWeather6)  // 打印ok了，哈哈哈。。。
+
+        return result
     }
-    return response.body()!!.string()
+    return "testRetrofitGet is error"
     /*
     请求："https://free-api.heweather.com/s6/weather/now?location=hangzhou&key=458c682400df47efb841a69154d7677d"
     响应结果：

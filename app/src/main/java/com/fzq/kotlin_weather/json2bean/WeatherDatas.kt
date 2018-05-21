@@ -4,7 +4,7 @@ import java.util.*
 import java.io.Serializable
 
 // weather/forecast -- 3-10天天气预报
-data class WeatherForecast(val heWeather6: List<com.fzq.kotlin_weather.json2bean.forecast.HeWeather6>)
+data class WeatherForecast(val HeWeather6: MutableList<com.fzq.kotlin_weather.json2bean.forecast.HeWeather6>)
 
 data class Daily_forecast(val cond_code_d: String, val cond_code_n: String, val cond_txt_d: String,
                           val cond_txt_n: String, val date: String, val hum: String, val pcpn: String, val pop: String,
@@ -25,7 +25,7 @@ data class Now(val cond_code: String, val cond_txt: String, val fl: String, val 
 data class Update(val loc: String, val utc: String) : Serializable
 
 // weather/hourly  ---  逐小时预报
-data class WeatherHourly(val heWeather6: List<com.fzq.kotlin_weather.json2bean.hourly.HeWeather6>)
+data class WeatherHourly(val HeWeather6: MutableList<com.fzq.kotlin_weather.json2bean.hourly.HeWeather6>)
 
 data class Hourly(val cloud: String, val cond_code: String, val cond_txt: String, val hum: String,
                   val pop: String, val pres: String, val time: String, val tmp: String,

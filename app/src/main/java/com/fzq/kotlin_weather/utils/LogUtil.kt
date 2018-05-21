@@ -10,7 +10,7 @@ var isPrintLog: Boolean = true
 /**
  * 一个简单的全局打印log的函数, 使用 Log.i()
  */
-fun showLog(tag: String, msg: String) {
+fun printLog(tag: String, msg: String) {
     if (isPrintLog) {
         var tag1 = tag
         if(tag.length >= 23){
@@ -23,13 +23,13 @@ fun showLog(tag: String, msg: String) {
 /**
  * 一个简单的全局打印log的函数, 使用 Log.e()
  */
-fun showErrorLog(tag: String, msg: String){
+fun printErrorLog(tag: String, msg: String){
     if(isPrintLog){
         var tag1 = tag
         if(tag.length >= 23){
             tag1 = tag.substring(0, 23)
         }
 
-        Log.e(tag1, msg)
+        Log.e(tag1, "Global_errorLog-- $msg")
     }
 }
