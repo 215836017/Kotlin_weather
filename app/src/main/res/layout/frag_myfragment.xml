@@ -125,14 +125,14 @@
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/myFrag_view_centerVertical_line" />
+        app:layout_constraintTop_toBottomOf="@id/myFrag_view_centerVertical_line" />
 
     <View
         android:id="@+id/myFrag_view_baseLine_2"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginTop="5dp"
-        android:background="#fff"
+        android:background="#64e4a8"
         app:layout_constraintTop_toBottomOf="@id/myFrag_RecyclerView_hourly" />
 
     <android.support.v7.widget.RecyclerView

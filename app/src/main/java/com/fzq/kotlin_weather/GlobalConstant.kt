@@ -29,15 +29,16 @@ var defaultLocation = "hangzhou"
  */
 val sp_name = "kotlin_weather_spName"
 
-object SharedPreferenceUtil {
-    fun initSharedPreferences(context: Context): SharedPreferences {
-        return context.getSharedPreferences(sp_name, Context.MODE_PRIVATE)
-    }
+/**
+ * 是否自动更新，默认是自动更新
+ */
+val isAutoUpdateWeather: Boolean = true
 
-    fun inisEditor(context: Context): SharedPreferences.Editor {
-        return initSharedPreferences(context).edit()
-    }
-}
+val updateIntervals = arrayOf("1 hour", "2 hours", "3 hours", "4 hours", "5 hours", "6 hours")
+/**
+ *
+ */
+val updatePeriod: String = updateIntervals[0]
 
 //********************* 保存在sp中内容的字段 -- start *************************
 val SP_LAST_LOCATION: String = "sp_last_location"

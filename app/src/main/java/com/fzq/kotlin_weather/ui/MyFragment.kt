@@ -1,5 +1,6 @@
 package com.fzq.kotlin_weather.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Message
@@ -16,6 +17,7 @@ import com.fzq.kotlin_weather.network.*
 import com.fzq.kotlin_weather.ui.recycler.MyRecycAdapterForecast
 import com.fzq.kotlin_weather.ui.recycler.MyRecycAdapterHourly
 import com.fzq.kotlin_weather.utils.ImageUtil
+import com.fzq.kotlin_weather.utils.getWeekDay
 import com.fzq.kotlin_weather.utils.printLog
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.frag_myfragment.*
@@ -40,6 +42,12 @@ class MyFragment : Fragment() {
 
         val view = inflater.inflate(R.layout.frag_myfragment, container, false)
 
+        myFrag_image_setting.setOnClickListener(View.OnClickListener {
+            startActivity(Intent(context, SettingActivity::class.java))
+        })
+        myFrag_image_addCity.setOnClickListener(View.OnClickListener {
+            startActivity(Intent(context, SearchCityActivity::class.java))
+        })
         return view
 
     }
@@ -61,9 +69,9 @@ class MyFragment : Fragment() {
     fun startQuaryWeahter() = object : Thread() {
         override fun run() {
             super.run()
-            resultForecast = getWeatherForecast(location)
-            resultNow = getWeatherNow(location)
-            resultHourly = getWeatherHourly(location)
+            resultForecast = NetworkHelper.getWeatherForecast(location)
+            resultNow = NetworkHelper.getWeatherNow(location)
+            resultHourly = NetworkHelper.getWeatherHourly(location)
 
             mHandler.sendEmptyMessage(MyFragment.QUERY_WEATHER)
         }
@@ -84,6 +92,8 @@ class MyFragment : Fragment() {
         myFrag_iamge_weatherIcon.setImageResource(ImageUtil.getImageIdByCode(weatherNow.HeWeather6[0].now.cond_code))
         myFrag_text_weatherCase.text = weatherNow.HeWeather6[0].now.cond_txt
         myFrag_text_temperatureRange.text = weatherForecast.HeWeather6[0].daily_forecast[0].tmp_min + "°～ " + weatherForecast.HeWeather6[0].daily_forecast[0].tmp_max + "°"
+        myFrag_text_date.text = "Toady " + getWeekDay(weatherNow.HeWeather6[0].update.loc.split(" ")[0])
+
 
         val layoutManageHourly = LinearLayoutManager(context)
         layoutManageHourly.orientation = OrientationHelper.HORIZONTAL

@@ -6,17 +6,23 @@ import com.fzq.kotlin_weather.utils.printLog
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
+object NetworkHelper {
+
+    val retrofitGet: RetrofitGet
+
+    init {
+        val retrofit = Retrofit.Builder()
+                .baseUrl(baseUrl)
+                .build()
+
+        retrofitGet = retrofit.create(RetrofitGet::class.java)
+    }
+
 
     /**
      * 3-10天天气预报
      */
     fun getWeatherForecast(location: String): String? {
-        val retrofit = Retrofit.Builder()
-                .baseUrl(baseUrl)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build()
-
-        val retrofitGet = retrofit.create(RetrofitGet::class.java)
 
         val map = mapOf<String, String>(Pair("location", location),
                 Pair("key", heFeng_key))
@@ -36,12 +42,12 @@ import retrofit2.converter.gson.GsonConverterFactory
      * 实况天气
      */
     fun getWeatherNow(location: String): String? {
-        val retrofit = Retrofit.Builder()
-                .baseUrl(baseUrl)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build()
-
-        val retrofitGet = retrofit.create(RetrofitGet::class.java)
+//        val retrofit = Retrofit.Builder()
+//                .baseUrl(baseUrl)
+//                .addConverterFactory(GsonConverterFactory.create())
+//                .build()
+//
+//        val retrofitGet = retrofit.create(RetrofitGet::class.java)
         val call = retrofitGet.queryWeatherNow(location, heFeng_key)
         val response = call.execute()
         if (response.isSuccessful) {
@@ -57,10 +63,10 @@ import retrofit2.converter.gson.GsonConverterFactory
      * 逐小时预报
      */
     fun getWeatherHourly(location: String): String? {
-        val retrofitGet = Retrofit.Builder()
-                .baseUrl(baseUrl)
-                .build()
-                .create(RetrofitGet::class.java)
+//        val retrofitGet = Retrofit.Builder()
+//                .baseUrl(baseUrl)
+//                .build()
+//                .create(RetrofitGet::class.java)
         val map = mapOf<String, String>(Pair("location", location),
                 Pair("key", heFeng_key))
         val call = retrofitGet.queryWeahterHourly(map)
@@ -80,7 +86,7 @@ import retrofit2.converter.gson.GsonConverterFactory
     private fun showLog(msg: String) {
         printLog("NetworkHelper.kt", msg)
     }
-
+}
 
 val exampleHourly = """
 {

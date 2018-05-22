@@ -78,9 +78,9 @@ class MainActivity : AppCompatActivity() {
 //                testGet(path)
 
 
-                getWeatherForecast("hangzhou")
-                getWeatherNow("hangzhou")
-                getWeatherHourly("hangzhou")
+//                getWeatherForecast("hangzhou")
+//                getWeatherNow("hangzhou")
+//                getWeatherHourly("hangzhou")
 
                 //  testRetrofitGet1("hangzhou")
             }
